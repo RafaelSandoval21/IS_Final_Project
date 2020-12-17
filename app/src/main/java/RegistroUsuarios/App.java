@@ -8,7 +8,15 @@ public class App {
         return "Hello World!";
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) 
+    {
         System.out.println(new App().getGreeting());
+
+        RegistroUsuarios ru = new RegistroUsuarios();
+
+        System.out.println("Usuarios");
+        System.out.println("-----------");
+        System.out.println("El Usuario con nombre Rodrigo, existe en la base de datos:");
+        System.out.println(ru.usuarios("Rodrigo"));
     }
 }

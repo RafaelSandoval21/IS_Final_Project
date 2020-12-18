@@ -6,21 +6,30 @@ package RegistroUsuarios;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 public class AppTest 
 {
     RegistroUsuarios ru;
 
-    @Test public void testAppHasAGreeting() 
+    @Before public void setUp()
     {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+        ru = new RegistroUsuarios();
+    }
+
+    @Test public void testUsuario() 
+    {
+        assertTrue(ru.usuarios("Rodrigo") == true);
     }
 
     @Test public void testRegistro() 
     {
-        ru = new RegistroUsuarios();
+        assertNotNull(ru.registrar("Nicolas", 31, "Col. del Bosque", "Lenguaje de programacion Java"));
+    }
 
-        assertTrue(ru.usuarios("Rodrigo") == true);
+    @Test public void testDepositoTiempo() 
+    {
+        assertNotNull(ru.registrarTiempo(123, "Grecia"));
     }
 
 }

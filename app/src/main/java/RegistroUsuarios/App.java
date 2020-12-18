@@ -3,20 +3,76 @@
  */
 package RegistroUsuarios;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.util.Scanner;
 
+public class App 
+{
     public static void main(String[] args) 
     {
-        System.out.println(new App().getGreeting());
+        Scanner sc = new Scanner(System.in);
 
         RegistroUsuarios ru = new RegistroUsuarios();
 
-        System.out.println("Usuarios");
-        System.out.println("-----------");
-        System.out.println("El Usuario con nombre Rodrigo, existe en la base de datos:");
-        System.out.println(ru.usuarios("Rodrigo"));
+        System.out.println("");
+        System.out.println("Registro de Usuarios");
+        System.out.println("--------------------------");
+        System.out.println("Teclee el nombre a buscar en la base de datos:");
+
+        String nombreEval = sc.nextLine();
+        Boolean existe = ru.usuarios(nombreEval);
+
+        if(existe)
+        {
+            System.out.println("El Usuario con nombre "+ nombreEval +", Si Existe en la base de datos:");
+
+            System.out.println("Desea Consultar su Tiempo Depositado? y/n");
+            String respuesta = sc.nextLine();
+
+            if(respuesta.equals("y") || respuesta.equals("Y"))
+            {
+                System.out.println("Ingrese la Matricula:");
+                int matricula = sc.nextInt();
+
+                System.out.println("");
+                System.out.println(ru.registrarTiempo(matricula, nombreEval));
+                System.out.println("");
+            }
+        }
+        else
+        {
+            System.out.println("El Usuario con nombre "+ nombreEval +", No Existe en la base de datos:");
+
+            System.out.println("Desea Registrarlo? y/n");
+            String respuesta = sc.nextLine();
+
+            if(respuesta.equals("y") || respuesta.equals("Y"))
+            {
+                System.out.println("Ingrese la direccion:");
+                String direccion = sc.nextLine();
+
+                System.out.println("Ingrese las habilidades del usuario:");
+                String habilidades = sc.nextLine();
+
+                System.out.println("Ingrese la edad:");
+                int edad = sc.nextInt();
+
+                System.out.println("");
+                System.out.println(ru.registrar(nombreEval, edad, direccion, habilidades));
+                System.out.println("");
+            }
+        }
+
+        /*
+        System.out.println("");
+        System.out.println("Deposito de Tiempo");
+        System.out.println("----------------------");
+
+        System.out.println("Teclee la Matricula a buscar en el sistema:");
+        int matricula = sc.nextInt();
+
+        System.out.println("");
+        System.out.println(ru.registrarTiempo(matricula));
+        System.out.println("");
+        */
     }
 }
